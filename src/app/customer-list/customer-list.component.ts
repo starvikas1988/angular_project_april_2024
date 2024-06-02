@@ -68,6 +68,19 @@ export class CustomerListComponent implements OnInit {
 
   selectedCustomer:Customer | null = null;
 
+  isEditing: boolean=false;
+
+  editingIndex: number | null = null
+
+  newCustomer: Customer = { 
+    customerId: 0, 
+    name: '', 
+    email: '', 
+    phone: '', 
+    address: '', 
+    gender: '' 
+  }
+
   ngOnInit(){
     if(this.customers.length > 0){
       this.customerKeys = Object.keys(this.customers[0]);
@@ -83,9 +96,58 @@ export class CustomerListComponent implements OnInit {
     this.selectedCustomer=customer
  
   }
+  addEditEmployee(){
+    if(this.isEditing == true){
+      if(this.editingIndex != null){
+        this.customers[this.editingIndex] = {...this.newCustomer}
+        Swal.fire("Updated Successfully","","success")
+        this.newCustomer =  { 
+          customerId: 0, 
+          name: '', 
+          email: '', 
+          phone: '', 
+          address: '', 
+          gender: '' 
+        }
+        this.isEditing = false
+      }
+      console.log("edit")
 
+    }else{
+      if(this.newCustomer.name && this.newCustomer.customerId && this.newCustomer.email && this.newCustomer.gender && this.newCustomer.phone){
+        this.customers.push({...this.newCustomer})
+        //console.log(this.newCustomer);
+        Swal.fire('Added Successfully', '', 'success');
+        this.newCustomer = { 
+          customerId: 0, 
+          name: '', 
+          email: '', 
+          phone: '', 
+          address: '', 
+          gender: '' 
+        }
+      }else{
+        Swal.fire('Please fill all the fields', '', 'error');
+      }
+      
+    }
+    
+  }
+
+  editEmployee(customer:Customer,index:number){
+    this.newCustomer = {...customer}
+    this.isEditing = true;
+    this.editingIndex = index
+  }
   deleteCustomer(index:number){
-   
+    this.newCustomer = { 
+      customerId: 0, 
+      name: '', 
+      email: '', 
+      phone: '', 
+      address: '', 
+      gender: '' 
+    }
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
