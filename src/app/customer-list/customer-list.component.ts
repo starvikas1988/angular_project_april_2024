@@ -1,6 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
+interface Customer {
+  customerId: number;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  gender: string;
+}
+
 
 @Component({
   selector: 'app-customer-list',
@@ -9,9 +19,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.css'
 })
-export class CustomerListComponent {
+export class CustomerListComponent implements OnInit {
 
-   customers: any= [
+   customers: Customer[]= [
     { 
       customerId: 201, 
       name: 'John Doe', 
@@ -54,16 +64,46 @@ export class CustomerListComponent {
     }
   ];
 
-  customerKeys : any = '';
+  customerKeys: string[] = [];
 
- // customerKeys = Object.keys(customers);
-
- //vikas
-
-  
+  selectedCustomer:Customer | null = null;
 
   ngOnInit(){
-    console.log("Vikas");
+    if(this.customers.length > 0){
+      this.customerKeys = Object.keys(this.customers[0]);
+      // console.log(this.customerKeys);
+      // console.log("---------------")
+      // console.log(this.customers);
+    }
+  }
+
+  viewCustomerDetails(customer:Customer){
+    console.log("clicked")
+    console.log(this.selectedCustomer)
+    this.selectedCustomer=customer
+ 
+  }
+
+  deleteCustomer(index:number){
+   
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result)=>{
+      if(result.isConfirmed){
+        this.customers.splice(index, 1);
+        Swal.fire(
+          'Deleted!',
+          'Your customer has been deleted.',
+          'success'
+        );
+      }
+    })
   }
 
 }
