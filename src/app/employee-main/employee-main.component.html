@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row parent border p-2">
+        <h4 class="text-center">Employee Curd Operation!</h4>
+       
+    </div>
+    <div class="row">
+        <div class="col-sm-6 border p-2">
+            <app-employee-table [employees] = "employees" (edit) = "editEmployee($event.employee, $event.index)" (delete) = "deleteEmployee($event)"></app-employee-table>
+        </div>
+        <div class="col-sm-6 border p-2">
+            <app-employee-form [employee]="selectedEmployee"  (add)="addEmployee($event)"></app-employee-form>
+        </div>
+    </div>
+</div>

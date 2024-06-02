@@ -1,0 +1,23 @@
+<!-- <form (ngSubmit)="addEmployee()"> -->
+    <div class="form-group">
+      <label for="eId">Employee ID:</label>
+      <input type="number" class="form-control" id="eId" [(ngModel)]="newEmployee.eId" name="eId" required>
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="newEmployee.name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="sal">Salary:</label>
+      <input type="number" class="form-control" id="sal" [(ngModel)]="newEmployee.sal" name="sal" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select class="form-control" id="gender" [(ngModel)]="newEmployee.gender" name="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="addEmployee()">{{ isEditMode ? 'Update Employee' : 'Add Employee' }}</button>
+  <!-- </form> -->
+  

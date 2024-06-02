@@ -1,0 +1,60 @@
+<div>
+  <table class="table">
+    <thead>
+      <!-- <tr>
+        <th scope="col">Employee Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Male</th>
+      </tr> -->
+      <tr>
+        <th *ngFor="let header of headers">{{ header | titlecase }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <th scope="row">{{ emp.eId }}</th>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.sal }}</td>
+        <td>{{ emp.gender }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<hr>
+<hr>
+<div *ngIf="cars.length > 0">
+    <ul *ngFor="let car of cars; let i =index">
+        <li>{{i+1}} --- {{car}}</li>
+    </ul>
+</div>
+<hr>
+
+<h1 [ngSwitch]="n">
+    <p *ngSwitchCase="1">Monday</p>
+    <p *ngSwitchCase="2">Tuesday</p>
+    <p *ngSwitchCase="3">Wednesday</p>
+    <p *ngSwitchCase="4">Thursday</p>
+    <p *ngSwitchCase="5">Friday</p>
+    <p *ngSwitchCase="6">Saturday</p>
+    <p *ngSwitchCase="0">Sunday</p>
+    <p *ngSwitchDefault>Not a valid number</p>
+</h1>
+
+<hr>
+
+<h4 *ngIf="n%2 == 0">{{n}} is even number </h4>
+
+<h4 *ngIf="n%2!=0">{{n}} is odd number</h4>
+
+<h4 *ngIf="n%2==0; else oddBlock">
+{{n}} is even!!
+</h4>
+
+<ng-template #oddBlock>
+    <h4>{{n}} is Odd Number!!</h4>
+</ng-template>
+
+

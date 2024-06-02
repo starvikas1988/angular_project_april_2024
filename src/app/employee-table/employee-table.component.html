@@ -1,0 +1,47 @@
+<!-- employee-table.component.html -->
+<table class="table">
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees; let i = index">
+        <td>{{ employee.eId }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.sal }}</td>
+        <td>{{ employee.gender }}</td>
+        <td>
+            <button class="btn btn-info btn-sm mx-1" (click)="viewEmployeeDetails(employee)" data-bs-toggle="modal" data-bs-target="#employeeModal">View</button>
+          <button class="btn btn-primary btn-sm mx-1" (click)="editEmployee(employee,i)">Edit</button>
+          <button class="btn btn-danger btn-sm mx-1" (click)="deleteEmployee(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="employeeModalLabel">Employee Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" *ngIf="selectedEmployee">
+          <p><strong>Employee ID:</strong> {{ selectedEmployee.eId }}</p>
+          <p><strong>Name:</strong> {{ selectedEmployee.name }}</p>
+          <p><strong>Salary:</strong> {{ selectedEmployee.sal }}</p>
+          <p><strong>Gender:</strong> {{ selectedEmployee.gender }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearSelectedEmployee()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,41 @@
+<p>databinding works!</p>
+
+<h4>My Name is- {{name}}</h4>
+<h4>My Name is- <span [innerHTML]="name"></span></h4>
+<h4>My Name is- <span bind-innerHTML="name"></span></h4>
+<h4>Hiiiii, I am {{name}}, i am from {{address}}</h4>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4A17VoL2sBx2CyDBPCU1oPIFIsBDU6tblyd_uv0ddIw&s" alt="">
+<img src="{{sachin_url}}" alt="" class="mx-2" />
+<img [src]="sachin_url" alt="" />
+<img bind-src="sachin_url" alt="" class="mx-2" />
+<br /><br />
+
+<p>1 way Interpolation : <input value="{{name}}" /></p>
+<p>1 way Property: <input [value]="name" /></p>
+<p>1 way Property: <input bind-value="name" /></p>
+
+<p>2 way Property: <input [(ngModel)]="name" /></p>
+<p>2 way Property: <input bindon-ngModel="name" /></p>
+
+<p>
+    <!-- while interpolation works for inner text or attributes like class, it doesn't work correctly for boolean attributes like disabled because interpolation always results in a string. Angular will set the attribute disabled to the string "true" or "false", which might not behave as expected for some browsers, leading to potentially unreliable behavior. -->
+
+    <button class="btn btn-primary mx-1" disabled="{{flag}}">Btn-1</button> 
+    
+    <button class="btn btn-primary mx-1" [disabled]="flag">Btn-2</button>
+    <button class="btn btn-primary mx-1" bind-disabled="flag">Btn-3</button>
+
+    <button class="btn btn-primary mx-1" (click)="f1()">Click me</button>
+    <button class="btn btn-primary mx-1" on-click="f1()">Click me</button>
+    <button class="btn btn-primary mx-1" on-click="addition(10,20)">Add</button>
+</p>
+<div> Number1 : <input type="number" [(ngModel)]="num1" /></div>
+<div> Number2 : <input type="number" [(ngModel)]="num2" /></div>
+<div>Addition of {{num1}} && {{num2}} is {{num1+num2}}</div>
+==========================================================================
+<h3>Template Reference Variable</h3>
+<!-- Un-controlled Input -->
+<input type="number" #num3 id="box1" />
+<input type="number" ref-num4 id="box2" />
+<button class="btn btn-primary" (click)="addition(num3.value,num4.value)">Add-2</button>

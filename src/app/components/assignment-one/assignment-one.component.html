@@ -1,0 +1,43 @@
+<p [hidden]="flag">Text to be toggled:Vikas</p>
+<button (click)="flag=!flag">{{flag ?"show":"hide"}}</button>
+<button (click)="toogleData()">click to toggle</button>
+<hr>
+
+One way: <textarea maxlength="100" [(ngModel)]= "text" rows="4" cols="50"> </textarea>
+
+<p>{{100 - text.length}} characters remaining</p>
+
+Second way: 
+<textarea [maxLength]="data" [(ngModel)]="text" rows="4" cols="50"></textarea>
+
+<p>{{data - text.length}} characters remaining</p>
+
+Third way: 
+<textarea [maxLength]="maxLength" [(ngModel)]="text" rows="4" cols="50"></textarea>
+<p>{{ remainingCharacters }} characters remaining</p>
+
+One way:
+<select [(ngModel)]="value">
+    <option value="UP">UP</option>
+    <option value="MP">MP</option>
+    <option value="WB">WB</option>
+    <option value="AP">AP</option>
+</select>
+
+<p>{{value}}</p>
+
+Second way: 
+
+<!-- state-selector.component.html -->
+<div>
+    <label for="state-select">Select a state:</label>
+    <select id="state-select" (change)="onSelectState($event)">
+      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+    </select>
+    <p *ngIf="selectedState">Selected state: {{ selectedState }}</p>
+  </div>
+  <!-- changing theme light mode / dark mode -->
+  <div>
+    <button (click)="toggletheme()">{{isDarkMode ? "Switch to Light Mode":"Switch to Dark Mode"}}</button>
+  </div>
+  

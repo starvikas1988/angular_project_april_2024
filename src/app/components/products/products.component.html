@@ -1,0 +1,64 @@
+
+<h1 class="text-center">Product List</h1>
+
+<!-- <div class="container">
+    <div class="row">
+        <div *ngFor="let product of products">
+            {{product.title}} -- {{product.price}}
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="container">
+    <div class="row row-cols-md-4 g-4">
+        @for (product of products; track product.id) {
+            <div class="col">
+                <div class="card">
+                    <img [src] = 'product.image' alt = 'No Image' height="300px">
+                  <div class="card-body">
+                    <h5 class="card-title text-truncate ">Title: {{product.title}}</h5>
+                    <p class="card-text"> Id: {{product.id}}</p>
+                    <p class="card-text"> Price: $ {{product.price}}</p>
+                    <p class="card-text text-truncate"> Description: {{product.description}}</p>
+                    <p class="card-text"> category: {{product.category}}</p>
+                    <p class="card-text"> Rate: {{product.rating.rate}}</p>
+                    <p class="card-text"> Count: {{product.rating.count}}</p>
+                    <a href="#" class="btn btn-primary">View</a>
+                  </div>
+                </div>
+              </div>
+          }
+          @empty {
+            <div>No Products found!!</div>
+            }
+      </div>
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <input type="search" placeholder="Search..." class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-primary">Asc</button>
+            <button class="btn btn-secondary mx-1">Desc</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-3 g-3" *ngFor="let product of products; let i=index">
+            <div class="card">
+                <img [src]="product.image" alt="No Image" height="300px"/>
+                <div class="card-body">
+                    <h4 class="card-title">Id:{{product.id}}</h4>
+                    <p class="card-text text-truncate">Title:{{product.title}}</p>
+                    <p class="card-text text-truncate">Desc :{{product.description}}</p>
+                    <p class="card-text">Category :{{product.category}}</p>
+                    <p class="card-text">Price :{{product.price}}</p>
+                    <p class="card-text">Rate :{{product.rating.rate}}</p>
+                    <p class="card-text">Count :{{product.rating.count}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
